@@ -14,10 +14,6 @@ import openpyxl
 import os
 from PyQt5.QtWidgets import QApplication, QAction, QFileDialog,  QTextEdit
 class Ui_validateIdentityUI(QtWidgets.QMainWindow):
-    def __init__(self):
-        super(Ui_validateIdentityUI,self).__init__()
-        self.setupUi(self)
-        self.retranslateUi(self)
     def setupUi(self, validateIdentityUI):
         validateIdentityUI.setObjectName("validateIdentityUI")
         validateIdentityUI.resize(635, 448)
@@ -84,14 +80,12 @@ class Ui_validateIdentityUI(QtWidgets.QMainWindow):
         validateIdentityUI.setStatusBar(self.statusbar)
 
         self.retranslateUi(validateIdentityUI)
-
-        # self.pushButton.clicked.connect(self.begain_validate)
         self.pushButton_3.clicked.connect(self.open_file)
         QtCore.QMetaObject.connectSlotsByName(validateIdentityUI)
 
     def retranslateUi(self, validateIdentityUI):
         _translate = QtCore.QCoreApplication.translate
-        validateIdentityUI.setWindowTitle(_translate("validateIdentityUI", "校验身份证"))
+        validateIdentityUI.setWindowTitle(_translate("validateIdentityUI", "身份证校验工具V 0.0.1"))
         self.pushButton.setText(_translate("validateIdentityUI", "开始"))
         self.pushButton_2.setText(_translate("validateIdentityUI", "停止"))
         self.label.setText(_translate("validateIdentityUI", "文件路径"))
@@ -101,37 +95,17 @@ class Ui_validateIdentityUI(QtWidgets.QMainWindow):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#5500ff;\">使用说明：</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#5500ff;\">1.只支持后缀为</span><span style=\" color:#ff0000;\">.xlsx</span><span style=\" color:#5500ff;\">的excel文件的校验；</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#5500ff;\">2.身份证号所在列的</span><span style=\" color:#ff0000;\">标题必须为“身份证号码</span><span style=\" color:#5500ff;\">”，且身份证号所在</span><span style=\" color:#ff0000;\">sheet必须是第一个</span><span style=\" color:#5500ff;\">，软件将从第二列开始校验；</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#5500ff;\"></span><span style=\" color:#ff0000;\">1.只支持后缀为.xlsx的excel文件的校验，默认第一行为标题，只校验第一个sheet中的标题为‘身份证号码’的列；</span><span style=\" color:#5500ff;\"></span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#5500ff;\">2.生成的文件位于原路径下，且校验结果位于EXCEL最后几列；</span></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#5500ff;\">3.身份证号校验规则为：</span></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#5500ff;\">（1）长度必须为18位；</span></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#5500ff;\">（2）前17位为数字，最后1位校验码为数字或X</span></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#5500ff;\">（3）对前2位的省区划进行判断，属于31个省市自治区的区划之一；</span></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#5500ff;\">（4）第7至14位为yyyymmdd出生日期，18&lt;=年龄&lt;=60；</span></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#5500ff;\">（5）最后一位校验码正确</span></p>\n"
-        "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#5500ff;\">（6）生成的文件位于原路径下，且校验结果位于EXCEL最后几列</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#5500ff;\"><br /></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#5500ff;\"><br /></p></body></html>"))
 
-    # def begain_validate(self):
-    #     filePath=self.lineEdit.text();
-    #     print(filePath)
-    #     houzui=""
-    #     if len(filePath)>0 :
-    #         list = filePath.split('/')
-    #         zui = list[len(list) - 1]
-    #         houzui = zui.split(".")
-    #         result_name=houzui[0]+"_"+"校验结果"+"."+houzui[1]
-    #         path=""
-    #         for i in range(len(list)-1):
-    #             path+=list[i]+"\\"
-    #         inpath=path+zui
-    #         exportFilePath=path+result_name
-    #         print(inpath)
-    #         print(exportFilePath)
-    #         self.read_excel(1, 2, 5, inpath, exportFilePath)
-    #     else:
-    #         print("文件路径不能为空")
 
 
     def open_file(self):
@@ -141,19 +115,19 @@ class Ui_validateIdentityUI(QtWidgets.QMainWindow):
     def setTextBrowser(self,text):
         self.textBrowser_2.append(text)
 
-    def read_excel(self,sheetnum, begin_row, col, filePath, exportFilePath):
-        self.setTextBrowser("正在载入excel...")
-        rule = {
-            1: "长度必须为18位",
-            2: "前17位为数字，最后1位校验码为数字或X（如为x请转为X）",
-            3: "前6位，可只对前2位的省区划进行判断，属于31个省市自治区的区划之一。（11,12,13,14,15，21,22,23,31,32,33,34,35,36,37,41,42,43,44,45,46,50,51,52,53,54,61,62,63,64,65)",
-            4: "第7至14位为yyyymmdd出生日期，要求18<=年龄<=60，1<=mm<=12,1<=dd,if mm in (1/3/5/7/8/10/12) dd<=31 else if mm in (4/6/9/11) dd<=30 else if 闰年 dd<=28 else dd<=29",
-            5: "1、将前面的身份证号码17位数分别乘以不同的系数。从第一位到第十七位的系数分别为：7－9－10－5－8－4－2－1－6－3－7－9－10－5－8－4－2。2、将这17位数字和系数相乘的结果相加。3、用加出来和除以11，余数为0－1－2－3－4－5－6－7－8－9－10这11个数字，其分别对应的最后一位身份证的号码为1－0－X －9－8－7－6－5－4－3－2。"
-        }
-        validatePass = "身份证校验通过"
-        validateNotPass = "身份证校验不通过"
-        col_name = "身份证号码"
+    def read_excel(self,begin_row, col, filePath, exportFilePath):
         try:
+            self.setTextBrowser("正在载入excel...")
+            rule = {
+                1: "长度必须为18位",
+                2: "前17位为数字，最后1位校验码为数字或X（如为x请转为X）",
+                3: "前6位，可只对前2位的省区划进行判断，属于31个省市自治区的区划之一。（11,12,13,14,15，21,22,23,31,32,33,34,35,36,37,41,42,43,44,45,46,50,51,52,53,54,61,62,63,64,65)",
+                4: "第7至14位为yyyymmdd出生日期，要求18<=年龄<=60，1<=mm<=12,1<=dd,if mm in (1/3/5/7/8/10/12) dd<=31 else if mm in (4/6/9/11) dd<=30 else if 闰年 dd<=28 else dd<=29",
+                5: "1、将前面的身份证号码17位数分别乘以不同的系数。从第一位到第十七位的系数分别为：7－9－10－5－8－4－2－1－6－3－7－9－10－5－8－4－2。2、将这17位数字和系数相乘的结果相加。3、用加出来和除以11，余数为0－1－2－3－4－5－6－7－8－9－10这11个数字，其分别对应的最后一位身份证的号码为1－0－X －9－8－7－6－5－4－3－2。"
+            }
+            validatePass = "身份证校验通过"
+            validateNotPass = "身份证校验不通过"
+            col_name = "身份证号码"
             # 打开文件
             wb = openpyxl.load_workbook(filePath)
             sheetnames = wb.get_sheet_names()

@@ -15,7 +15,6 @@ class MyDialog(Ui_validateIdentityUI):
         # 连接 QPushButton 的点击信号到槽 BigWork()
         self.pushButton.clicked.connect(self.validate_excel)
         self.pushButton_2.clicked.connect(self.stop_validate)
-        # self.pushButton.clicked.connect(self.BigWork)
     def validate_excel(self):
         try:
             #把按钮禁用掉
@@ -30,6 +29,8 @@ class MyDialog(Ui_validateIdentityUI):
                 list = filePath.split('/')
                 zui = list[len(list) - 1]
                 houzui = zui.split(".")
+                if houzui[1]!="xlsx":
+                    raise Exception("文件类型不正确！")
                 result_name = houzui[0] + "_" + "校验结果" + "." + houzui[1]
                 path = ""
                 for i in range(len(list) - 1):
@@ -43,14 +44,12 @@ class MyDialog(Ui_validateIdentityUI):
                 self.bwThread.finishSignal.connect(self.callbacklog)
                 # 开始执行 run() 函数里的内容
                 self.bwThread.start()
-                # validateIdentity.read_excel(1, 2, 5, inpath, exportFilePath)
             else:
                 self.setTextBrowser("文件路径不能为空")
-                print("文件路径不能为空")
+                self.pushButton.setDisabled(False)
         except Exception as err:
-            print(err)
-            self.setTextBrowser("==========================")
-            self.setTextBrowser("校验失败!错误描述:"+err)
+            self.pushButton.setDisabled(False)
+            self.setTextBrowser("校验失败!错误描述:"+str(err))
 
     #增加形参准备接受返回值 ls
     def callbacklog(self,ls):
