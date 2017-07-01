@@ -1,14 +1,6 @@
-# -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'validateIdentityUI.ui'
-#
-# Created by: PyQt5 UI code generator 5.6
-#
-# WARNING! All changes made in this file will be lost!
-import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
-import validateIdentity
-import re
+
 from validateUtil import validateUtil
 import openpyxl
 import os
@@ -85,7 +77,7 @@ class Ui_validateIdentityUI(QtWidgets.QMainWindow):
 
     def retranslateUi(self, validateIdentityUI):
         _translate = QtCore.QCoreApplication.translate
-        validateIdentityUI.setWindowTitle(_translate("validateIdentityUI", "身份证校验工具V 0.0.1"))
+        validateIdentityUI.setWindowTitle(_translate("validateIdentityUI", "身份证校验工具V 0.0.1  IT开发工作室"))
         self.pushButton.setText(_translate("validateIdentityUI", "开始"))
         self.pushButton_2.setText(_translate("validateIdentityUI", "停止"))
         self.label.setText(_translate("validateIdentityUI", "文件路径"))
@@ -95,8 +87,8 @@ class Ui_validateIdentityUI(QtWidgets.QMainWindow):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#5500ff;\">使用说明：</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#5500ff;\"></span><span style=\" color:#ff0000;\">1.只支持后缀为.xlsx的excel文件的校验，默认第一行为标题，只校验第一个sheet中的标题为‘身份证号码’的列；</span><span style=\" color:#5500ff;\"></span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#5500ff;\">2.生成的文件位于原路径下，且校验结果位于EXCEL最后几列；</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#5500ff;\"></span><span style=\" color:#ff0000;\">1.只支持后缀为.xlsx的excel文件的校验，默认第一行为标题，从第二行开始校验，只校验第一个sheet中的标题为‘身份证号码’的列；</span><span style=\" color:#5500ff;\"></span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#5500ff;\">2.生成的文件位于原路径下，且校验结果位于生成校验结果EXCEL的最后几列；</span></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#5500ff;\">3.身份证号校验规则为：</span></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#5500ff;\">（1）长度必须为18位；</span></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#5500ff;\">（2）前17位为数字，最后1位校验码为数字或X</span></p>\n"
